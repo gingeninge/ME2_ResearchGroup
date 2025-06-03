@@ -7,44 +7,47 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class HammerQte : MonoBehaviour
 {
-    // A reference for context (for example, the sword's parent).
+    // A reference for context (for example, the sword blade's parent object)
     public Transform swordBlade;
 
-    // QTE timing settings:
-    // perfectHitTime: Ideal time (in seconds) after heating when the hit is perfect.
-    // allowedErrorMargin: Acceptable deviation (in seconds) for a successful hit.
+    // QTE timing settings.
     public float perfectHitTime = 2.0f;
     public float allowedErrorMargin = 0.5f;
 
-    // Timer tracking elapsed time since the sword was heated.
+    // Timer tracking elapsed time since QTE start.
     private float timeSinceHeated = 0f;
 
-    // Audio feedback sources (assign these in the Inspector).
+    // Flag that indicates whether the QTE is active.
+    private bool qteActive = false;
+
+    // Audio feedback sources.
     public AudioSource successSound;
     public AudioSource failSound;
 
-    // Particle effect (e.g., sparks) to play on a perfect hit.
+    // Particle effect to play on a perfect hit.
     public ParticleSystem perfectSparkEffect;
 
     // XR component on the hammer (this script is attached to the hammer).
     private XRGrabInteractable grabInteractable;
 
     // --- Hit Indicator Setup ---
-    // Array of Transforms that designate the ideal hit positions on the sword blade.
-    // For example: element 0 = tip, 1 = middle, 2 = end.
+    // If randomizeIndicatorPositions is false, then these indicatorTargets define fixed positions.
     public Transform[] indicatorTargets;
 
-    // Prefab for the hit indicator (e.g., a glowing ring).
+    // When randomizeIndicatorPositions is true, these values determine the random offset along the sword blade.
+    public bool randomizeIndicatorPositions = true;
+    public float minIndicatorOffset = 0f;
+    public float maxIndicatorOffset = 0.5f;
+
+    // The prefab for the hit indicator (for example, a glowing ring).
     public GameObject hitIndicatorPrefab;
 
-    // Hold the instantiated hit indicator GameObjects.
+    // Array to hold the instantiated hit indicator GameObjects.
     private GameObject[] hitIndicators;
 
     // --- Haptic Feedback Settings for Successful Hits (per zone) ---
-    // Arrays should have one value per indicator target.
-    // For example, tip = 0.7 (amplitude), 0.2 sec (duration); middle = 0.5, 0.15 sec; end = 0.3, 0.1 sec.
-    public float[] hapticAmplitudes;
-    public float[] hapticDurations;
+    public float[] hapticAmplitudes; // e.g., tip = 0.7, middle = 0.5, end = 0.3.
+    public float[] hapticDurations;  // e.g., tip = 0.2 sec, middle = 0.15 sec, end = 0.1 sec.
 
     // Haptic settings for a failed (mistimed) hit.
     public float failHapticAmplitude = 0.2f;
@@ -52,48 +55,67 @@ public class HammerQte : MonoBehaviour
 
     void Start()
     {
-        // Get the XRGrabInteractable component from the hammer.
+        // Get the XRGrabInteractable component.
         grabInteractable = GetComponent<XRGrabInteractable>();
 
-        // Initialize the QTE timer.
+        // QTE is inactive initially.
+        qteActive = false;
         ResetTimer();
 
-        // Instantiate hit indicators at each designated target.
-        if (indicatorTargets != null && indicatorTargets.Length > 0 && hitIndicatorPrefab != null)
+        // Instantiate hit indicators.
+        // If randomization is enabled, we’ll attach them to the swordBlade and ignore preset indicatorTargets.
+        if (randomizeIndicatorPositions)
         {
-            hitIndicators = new GameObject[indicatorTargets.Length];
-            for (int i = 0; i < indicatorTargets.Length; i++)
+            // Determine the count of indicators from indicatorTargets if provided; otherwise, default to 3.
+            int count = (indicatorTargets != null && indicatorTargets.Length > 0) ? indicatorTargets.Length : 3;
+            hitIndicators = new GameObject[count];
+            for (int i = 0; i < count; i++)
             {
-                hitIndicators[i] = Instantiate(hitIndicatorPrefab, indicatorTargets[i].position, Quaternion.identity);
-                // Parent the indicator to the target so it follows the sword.
-                hitIndicators[i].transform.SetParent(indicatorTargets[i]);
-                // Start inactive; they will be activated in each QTE cycle.
+                // Instantiate at the swordBlade’s position.
+                hitIndicators[i] = Instantiate(hitIndicatorPrefab, swordBlade.position, Quaternion.identity);
+                // Parent to the swordBlade for convenience.
+                hitIndicators[i].transform.SetParent(swordBlade);
                 hitIndicators[i].SetActive(false);
             }
         }
         else
         {
-            Debug.LogWarning("Indicator Targets or Hit Indicator Prefab not assigned.");
-        }
-
-        // Initialize the haptic arrays if not assigned or lengths don’t match.
-        if (hapticAmplitudes == null || hapticAmplitudes.Length != indicatorTargets.Length)
-        {
-            hapticAmplitudes = new float[indicatorTargets.Length];
-            for (int i = 0; i < indicatorTargets.Length; i++)
+            // Use preset fixed positions.
+            if (indicatorTargets != null && indicatorTargets.Length > 0 && hitIndicatorPrefab != null)
             {
-                if (i == 0)
-                    hapticAmplitudes[i] = 0.7f;   // Tip: strongest.
-                else if (i == 1)
-                    hapticAmplitudes[i] = 0.5f;   // Middle: medium.
-                else
-                    hapticAmplitudes[i] = 0.3f;   // End: weakest.
+                hitIndicators = new GameObject[indicatorTargets.Length];
+                for (int i = 0; i < indicatorTargets.Length; i++)
+                {
+                    hitIndicators[i] = Instantiate(hitIndicatorPrefab, indicatorTargets[i].position, Quaternion.identity);
+                    hitIndicators[i].transform.SetParent(indicatorTargets[i]);
+                    hitIndicators[i].SetActive(false);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Indicator Targets or Hit Indicator Prefab not assigned.");
             }
         }
-        if (hapticDurations == null || hapticDurations.Length != indicatorTargets.Length)
+
+        // Initialize haptic arrays if not assigned or if their lengths do not match.
+        int indicatorCount = (hitIndicators != null) ? hitIndicators.Length : 0;
+        if (hapticAmplitudes == null || hapticAmplitudes.Length != indicatorCount)
         {
-            hapticDurations = new float[indicatorTargets.Length];
-            for (int i = 0; i < indicatorTargets.Length; i++)
+            hapticAmplitudes = new float[indicatorCount];
+            for (int i = 0; i < indicatorCount; i++)
+            {
+                if (i == 0)
+                    hapticAmplitudes[i] = 0.7f;
+                else if (i == 1)
+                    hapticAmplitudes[i] = 0.5f;
+                else
+                    hapticAmplitudes[i] = 0.3f;
+            }
+        }
+        if (hapticDurations == null || hapticDurations.Length != indicatorCount)
+        {
+            hapticDurations = new float[indicatorCount];
+            for (int i = 0; i < indicatorCount; i++)
             {
                 if (i == 0)
                     hapticDurations[i] = 0.2f;
@@ -107,24 +129,49 @@ public class HammerQte : MonoBehaviour
 
     void Update()
     {
-        // Increment the timer.
-        timeSinceHeated += Time.deltaTime;
-
-        // In case the sword moves, update each hit indicator’s position.
+        // Only update the QTE timer if the QTE is active.
+        if (qteActive)
+        {
+            timeSinceHeated += Time.deltaTime;
+        }
+        // Update the positions of the hit indicators.
         if (hitIndicators != null)
         {
-            for (int i = 0; i < hitIndicators.Length; i++)
+            if (randomizeIndicatorPositions)
             {
-                if (hitIndicators[i] != null && indicatorTargets[i] != null)
-                    hitIndicators[i].transform.position = indicatorTargets[i].position;
+                // When randomization is active, positions are re-randomized only at QTE start.
+                // (We might want to animate them or leave them fixed during the QTE.)
+                //  I'll keep their positions fixed after being randomized at start.
+            }
+            else
+            {
+                // For fixed positioning, keep indicators at their preset target positions.
+                for (int i = 0; i < hitIndicators.Length; i++)
+                {
+                    if (hitIndicators[i] != null && indicatorTargets[i] != null)
+                        hitIndicators[i].transform.position = indicatorTargets[i].position;
+                }
             }
         }
     }
 
-    // When the hammer collides with another collider…
+    /// <summary>
+    /// Called from Start QTE Button to begin the QTE.
+    /// Activates the QTE, resets the timer, and (if randomizing) randomizes indicator positions.
+    /// </summary>
+    public void StartQTE()
+    {
+        qteActive = true;
+        ResetTimer();
+        Debug.Log("QTE Started!");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        // ...process the hit only if the collided object is tagged as "Blade".
+        // Process the hit only if the QTE is active.
+        if (!qteActive)
+            return;
+
         if (collision.gameObject.CompareTag("Blade"))
         {
             OnHammerHit(collision);
@@ -132,15 +179,12 @@ public class HammerQte : MonoBehaviour
     }
 
     /// <summary>
-    /// Processes the hammer hit by checking timing and determining which zone was struck.
+    /// Processes the hammer hit by checking timing and determining the hit zone.
     /// </summary>
-
+    /// <param name="collision">Collision info from the hit.</param>
     public void OnHammerHit(Collision collision)
     {
-        // Check whether the hit falls within the acceptable timing window.
         bool isStrikeTimedCorrectly = Mathf.Abs(timeSinceHeated - perfectHitTime) < allowedErrorMargin;
-
-        // Determine the nearest hit zone based on the first contact point.
         int zone = GetClosestIndicatorZone(collision);
 
         if (isStrikeTimedCorrectly)
@@ -148,39 +192,43 @@ public class HammerQte : MonoBehaviour
         else
             ShowMistakeEffect(zone);
 
-        // Reset timer for the next QTE attempt.
-        ResetTimer();
+        // Stop the QTE after the hit (or you can keep it active for multiple attempts).
+        qteActive = false;
     }
 
     /// <summary>
-    /// Determines which indicator target (hit zone) is closest to the first collision contact point.
+    /// Determines which indicator is closest to the collision contact point.
+    /// If randomizing, the hit indicators' order is arbitrary.
     /// </summary>
-    /// <returns>The index of the closest zone (defaults to 0 if not determinable).</returns>
+   
     private int GetClosestIndicatorZone(Collision collision)
     {
-        if (collision.contacts.Length == 0 || indicatorTargets == null || indicatorTargets.Length == 0)
-            return 0; // Default.
+        if (collision.contacts.Length == 0 || hitIndicators == null || hitIndicators.Length == 0)
+            return 0;
 
         Vector3 hitPoint = collision.contacts[0].point;
         float minDistance = float.MaxValue;
         int zone = 0;
-        for (int i = 0; i < indicatorTargets.Length; i++)
+        for (int i = 0; i < hitIndicators.Length; i++)
         {
-            float dist = Vector3.Distance(hitPoint, indicatorTargets[i].position);
-            if (dist < minDistance)
+            if (hitIndicators[i] != null)
             {
-                minDistance = dist;
-                zone = i;
+                float dist = Vector3.Distance(hitPoint, hitIndicators[i].transform.position);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    zone = i;
+                }
             }
         }
         return zone;
     }
 
     /// <summary>
-    /// Called on a perfect hit. Plays success audio, particle effects,
-    /// hides hit indicators, and sends zone-specific haptic feedback.
+    /// Called on a perfect hit.
+    /// Plays success audio/particle effects, hides hit indicators, and sends haptic feedback for the given zone.
     /// </summary>
-
+   
     void ForgeBlade(int zone)
     {
         Debug.Log("Perfect hit on the sword blade, zone: " + zone);
@@ -196,9 +244,10 @@ public class HammerQte : MonoBehaviour
     }
 
     /// <summary>
-    /// Called on a mistimed hit. Plays failure audio and sends generic haptic feedback.
+    /// Called on a mistimed hit.
+    /// Plays failure audio and sends generic haptic feedback.
     /// </summary>
-
+  
     void ShowMistakeEffect(int zone)
     {
         Debug.Log("Missed the hit on the sword blade, zone: " + zone);
@@ -208,12 +257,16 @@ public class HammerQte : MonoBehaviour
     }
 
     /// <summary>
-    /// Resets the QTE timer and activates all hit indicators for the next attempt.
+    /// Resets the QTE timer and shows all hit indicators.
+    /// If randomizing positions, positions are randomized here.
     /// </summary>
     public void ResetTimer()
     {
         timeSinceHeated = 0f;
-        ShowHitIndicators();
+        if (randomizeIndicatorPositions)
+            RandomizeIndicatorPositions();
+        else
+            ShowHitIndicators();
     }
 
     /// <summary>
@@ -247,14 +300,32 @@ public class HammerQte : MonoBehaviour
     }
 
     /// <summary>
-    /// Sends a haptic impulse based on the hit zone.
-    /// To avoid any obsolete properties, we first get the currently selecting interactor,
-    /// cast it to a MonoBehaviour to obtain its world position, and then search for the closest InputDevice.
+    /// Randomizes the positions of the hit indicators along the sword blade.
+    /// They will appear at random offsets along the swordBlade's local up direction.
     /// </summary>
+    private void RandomizeIndicatorPositions()
+    {
+        if (hitIndicators != null && swordBlade != null)
+        {
+            foreach (GameObject indicator in hitIndicators)
+            {
+                if (indicator != null)
+                {
+                    float offset = Random.Range(minIndicatorOffset, maxIndicatorOffset);
+                    // Set position relative to swordBlade's position along its up vector.
+                    indicator.transform.position = swordBlade.position + swordBlade.up * offset;
+                }
+            }
+            ShowHitIndicators();
+        }
+    }
 
+    /// <summary>
+    /// Sends a haptic impulse based on the hit zone.
+    /// </summary>
+    
     private void SendHapticFeedbackForZone(int zone)
     {
-        // Obtain the currently selecting interactor.
         IXRSelectInteractor interactor = grabInteractable.GetOldestInteractorSelecting();
         if (interactor != null)
         {
@@ -274,7 +345,7 @@ public class HammerQte : MonoBehaviour
     }
 
     /// <summary>
-    /// Sends a generic haptic impulse for a failed hit.
+    /// Sends generic haptic impulse for a failed hit.
     /// </summary>
     private void SendHapticFeedbackForFailure()
     {
@@ -296,18 +367,16 @@ public class HammerQte : MonoBehaviour
 
     /// <summary>
     /// Finds the InputDevice (with HeldInHand and Controller characteristics) whose reported
-    /// position (via CommonUsages.devicePosition) is closest to a given position.
+    /// position is closest to the provided reference position.
     /// </summary>
-
+    
     private InputDevice GetClosestInputDevice(Vector3 position)
     {
         List<InputDevice> devices = new List<InputDevice>();
         InputDeviceCharacteristics characteristics = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Controller;
         InputDevices.GetDevicesWithCharacteristics(characteristics, devices);
-
         InputDevice bestDevice = default(InputDevice);
         float bestDistance = float.MaxValue;
-
         foreach (var device in devices)
         {
             Vector3 devicePos;
@@ -324,4 +393,3 @@ public class HammerQte : MonoBehaviour
         return bestDevice;
     }
 }
-
