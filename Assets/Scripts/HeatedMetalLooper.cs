@@ -120,16 +120,16 @@ public class HeatedMetalLooper : MonoBehaviour
     // OPTIONAL: If the forge is represented by a trigger collider, we can automatically detect
     // when the metal is placed into the forge by using OnTriggerEnter.
 
-    private void OnTriggerEnter(Collider other)
-    {
+   // private void OnTriggerEnter(Collider other)
+//    {
         // Check if the collider belongs to an object tagged "Forge".
-        if (other.CompareTag("Forge"))
-        {
+    //    if (other.CompareTag("Forge"))
+//        {
             // Reheat the metal if it's placed back into the forge.
-            ReheatMetal();
+  //          ReheatMetal();
 
-        }
+     //   }
 
-    }
+ //   }
 
 }

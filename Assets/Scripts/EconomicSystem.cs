@@ -16,7 +16,7 @@ public class EconomicSystem : MonoBehaviour
 {
     public int playerMoney;
     public TextMeshProUGUI moneyText;
-    public TextMeshProUGUI feedbackText;
+   
     public ShopItem[] shopItems;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,7 +39,7 @@ public class EconomicSystem : MonoBehaviour
         }
         else
         {
-            feedbackText.text = "No money";
+          
         }
         UpdateCurrency();
     }

@@ -2137,7 +2137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1142080092097060122, guid: fca31a4a597271946ae439f844e8d119, type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1200749940761233060, guid: fca31a4a597271946ae439f844e8d119, type: 3}
       propertyPath: m_IsTrigger
@@ -4126,6 +4126,7 @@ GameObject:
   - component: {fileID: 832261027}
   - component: {fileID: 832261026}
   - component: {fileID: 832261025}
+  - component: {fileID: 832261028}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -4222,6 +4223,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &832261028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832261023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7023,7 +7043,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoney: 100
   moneyText: {fileID: 1689976124}
-  feedbackText: {fileID: 0}
   shopItems:
   - itemName: IronBar
     itemPrice: 10
