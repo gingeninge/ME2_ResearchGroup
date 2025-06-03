@@ -35,7 +35,7 @@ public class EconomicSystem : MonoBehaviour
         {
             playerMoney -= shopItem.itemPrice;
             Instantiate(shopItem.prefab, shopItem.spawnPoint.position,Quaternion.identity);
-            feedbackText.text = $"Purchased {shopItem.itemName}";
+          
         }
         else
         {
