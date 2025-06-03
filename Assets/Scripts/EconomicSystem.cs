@@ -29,13 +29,13 @@ public class EconomicSystem : MonoBehaviour
         }
     }
 
-    private void BuyItem(ShopItem shopItem)
+    public void BuyItem(ShopItem shopItem)
     {
         if (playerMoney >= shopItem.itemPrice)
         {
             playerMoney -= shopItem.itemPrice;
             Instantiate(shopItem.prefab, shopItem.spawnPoint.position,Quaternion.identity);
-            feedbackText.text = $"Purchased {shopItem.itemName}";
+          
         }
         else
         {
@@ -48,5 +48,12 @@ public class EconomicSystem : MonoBehaviour
     {
         moneyText.text = $"Money: {playerMoney}";
 
+    }
+    public class ColliderDebug : MonoBehaviour
+    {
+        void OnTriggerEnter(Collider other)
+        {
+            Debug.Log($"Trigger entered by: {other.name}");
+        }
     }
 }
