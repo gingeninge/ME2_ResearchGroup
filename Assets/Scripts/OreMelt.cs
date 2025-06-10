@@ -25,7 +25,7 @@ public class OreMelt : MonoBehaviour
     {
         if (other.gameObject.CompareTag("IronOre")|| other.gameObject.CompareTag("CopperOre") || other.gameObject.CompareTag("SteelOre"))
         {
-            Debug.Log("please");
+            
             if (other.gameObject.CompareTag("CopperOre") || other.gameObject.CompareTag("SteelOre"))
             {
               
