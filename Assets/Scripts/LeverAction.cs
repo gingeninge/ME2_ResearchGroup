@@ -1,46 +1,45 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class LeverAction : MonoBehaviour
 {
     public HingeJoint hingeJoint;
-    public float activationAngle = 45f;
-    public float resetThreshold = 10f; // when the lever is nearly upright again
     public UnityEvent onLeverPulled;
 
-    private bool hasActivated = false;
+    [Header("Lever Settings")]
+    public float pullAngleThreshold = -60f;    
+    public float resetThreshold = 10f;        
+    public float returnSpeed = 100f;         
+
+    private bool wasPulledUp = false;
 
     void Start()
     {
-        // Optional: configure motor on startup
-        JointMotor motor = hingeJoint.motor;
-        motor.force = 100;
-        motor.targetVelocity = 0;
-        hingeJoint.motor = motor;
         hingeJoint.useMotor = false;
     }
 
     void Update()
     {
-        float currentAngle = Mathf.Abs(hingeJoint.angle);
+        float currentAngle = hingeJoint.angle;
 
-        // Activate event if pulled far enough and hasn't already activated
-        if (!hasActivated && currentAngle >= activationAngle)
+        // 🔹 Detect full upward pull
+        if (!wasPulledUp && currentAngle <= pullAngleThreshold)
         {
-            hasActivated = true;
-            onLeverPulled.Invoke();
+            wasPulledUp = true;
 
-            // Start motor to return to upright
+            // Start return motor
             JointMotor motor = hingeJoint.motor;
-            motor.targetVelocity = -50f * Mathf.Sign(hingeJoint.angle); // move back toward 0
+            motor.force = 500f;
+            motor.targetVelocity = returnSpeed; // moves back toward 0°
             hingeJoint.motor = motor;
             hingeJoint.useMotor = true;
         }
 
-        // Reset once it's nearly upright again
-        if (hasActivated && currentAngle <= resetThreshold)
+        // 🔸 Fire the event once it returns to upright
+        if (wasPulledUp && Mathf.Abs(currentAngle) <= resetThreshold)
         {
-            hasActivated = false;
+            onLeverPulled.Invoke();
+            wasPulledUp = false;
             hingeJoint.useMotor = false;
         }
     }
