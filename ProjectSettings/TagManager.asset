@@ -10,6 +10,11 @@ TagManager:
   - CopperOre
   - SteelOre
   - IronOre
+  - SwordMold
+  - DaggerMold
+  - AxeMold
+  - ShieldMold
+  - SwordHiltMold
   layers:
   - Default
   - TransparentFX
