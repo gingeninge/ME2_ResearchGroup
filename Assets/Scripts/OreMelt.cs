@@ -21,6 +21,26 @@ public class OreMelt : MonoBehaviour
     {
         
     }
+    public void SpawnObject() 
+    {
+        if (isSteel)
+        {
+            Instantiate(SteelSword, spawn.position, spawn.rotation);
+            isSteel = false;
+        }
+
+        if (isCopper) 
+        {
+            Instantiate(CopperSword, spawn.position, spawn.rotation);
+            isCopper = false;
+        }
+
+        if (isIron) 
+        {
+            Instantiate(IronSword, spawn.position, spawn.rotation);
+            isIron = false;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("IronOre")|| other.gameObject.CompareTag("CopperOre") || other.gameObject.CompareTag("SteelOre"))
@@ -33,11 +53,11 @@ public class OreMelt : MonoBehaviour
                 if (other.gameObject.CompareTag("SteelOre"))
                 {
                 ;
-                    Instantiate(SteelSword, spawn.position,spawn.rotation);
+                  isSteel = true;
                 } 
                 else
                 {
-                    Instantiate(CopperSword, spawn.position, spawn.rotation);
+                    isCopper = true;
                    
              
                 }
@@ -45,7 +65,7 @@ public class OreMelt : MonoBehaviour
             }
             else
             {
-                Instantiate(IronSword, spawn.position, spawn.rotation);
+               isIron = true;
                 
               
             }
