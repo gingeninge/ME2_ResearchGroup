@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class SellingSystem : MonoBehaviour
+public class SellingEconomicSystem : MonoBehaviour
 {
     public TMP_Dropdown material;
     public Button sellButton;
