@@ -5626,6 +5626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 736552204}
+  - component: {fileID: 736552205}
   m_Layer: 0
   m_Name: SellSystemManager
   m_TagString: Untagged
@@ -5648,6 +5649,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &736552205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736552202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b825c0af9c340c84bb35c42b7222011a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  sellButton: {fileID: 0}
+  customerRequest: {fileID: 0}
+  moneyText: {fileID: 0}
+  penaltyAmount: 0
 --- !u!4 &741887442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 9e4934a98a6565342b4d756769d70c88, type: 3}
