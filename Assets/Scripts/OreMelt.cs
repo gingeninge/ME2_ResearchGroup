@@ -78,15 +78,18 @@ public class OreMelt : MonoBehaviour
                 if (other.gameObject.CompareTag("SteelOre"))
                 {
                     isSteel = true;
+                    Destroy(other.gameObject);
                 }
                 else
                 {
                     isCopper = true;
+                    Destroy(other.gameObject);
                 }   
             }
             else
             {
                isIron = true;
+                Destroy(other.gameObject);
             }
         }
     } 
