@@ -1,10 +1,5 @@
 using UnityEngine;
 
-
-/// <summary>
-/// This script simulates the cooling effect of heated metal by adjusting a material’s emission value over time.
-/// </summary>
-
 public class HeatedMetalLooper : MonoBehaviour
 {
     // Material using the lit shader graph
@@ -14,7 +9,7 @@ public class HeatedMetalLooper : MonoBehaviour
     public Texture2D heatedTexture;
 
     // Texture when metal is cooled
-    public Material cooledMaterial;
+    public Texture2D cooledTexture;
 
     // Duration in seconds for the metal to fully cool
     public float coolingDuration = 5f;
@@ -37,7 +32,7 @@ public class HeatedMetalLooper : MonoBehaviour
         renderer = GetComponent<Renderer>();
 
         // Check that all required assets are assigned
-        if (heatedMaterial != null && heatedTexture != null && cooledMaterial != null)
+        if (heatedMaterial != null && heatedTexture != null && cooledTexture != null)
         {
             // Set the initial texture for the hot metal
             heatedMaterial.SetTexture("_MetalTexture", heatedTexture);
@@ -77,7 +72,7 @@ public class HeatedMetalLooper : MonoBehaviour
             // If cooling timer reaches zero, switch texture to the cooled metal
             if (coolingTimer <= 0f)
             {
-                GetComponent<Renderer>().material = cooledMaterial;
+                heatedMaterial.SetTexture("_MetalTexture", cooledTexture);
                 Debug.Log("[HeatedMetalLooper] Metal has fully cooled.");
                 hasCooled = true;
             }
@@ -100,5 +95,4 @@ public class HeatedMetalLooper : MonoBehaviour
             Debug.Log("[HeatedMetalLooper] Metal is reheated!");
         }
     }
-
 }
