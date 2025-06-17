@@ -1037,6 +1037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3309882858120561051}
   - component: {fileID: 8867372405804473313}
+  - component: {fileID: -2650295515502022706}
   m_Layer: 0
   m_Name: PT_Male_Modular_Free_Pack
   m_TagString: Customer
@@ -1088,6 +1089,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2650295515502022706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784561854437792545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f35eaa2a7ff4bbc2a5f75df11e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints:
+  - {fileID: 0}
+  Movementspeed: 1
+  isAtCounter: 0
+  hasSword: 0
 --- !u!1 &2898702037118956337
 GameObject:
   m_ObjectHideFlags: 0

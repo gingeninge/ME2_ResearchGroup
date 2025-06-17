@@ -10,7 +10,7 @@ public class SpawnCustomer : MonoBehaviour
     void Update()
     {
         GameObject tags = GameObject.FindGameObjectWithTag("Customer");
-        if(tags is not null) 
+        if(tags != null) 
         {
             InScene = false;
         }
