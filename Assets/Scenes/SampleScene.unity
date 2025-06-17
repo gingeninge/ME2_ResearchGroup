@@ -10087,7 +10087,7 @@ MonoBehaviour:
   allowedErrorMargin: 0.5
   successSound: {fileID: 1113234385}
   failSound: {fileID: 1113234384}
-  perfectSparkEffect: {fileID: 0}
+  perfectSparkEffect: {fileID: 6280281539998945384, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
   indicatorTargets:
   - {fileID: 2141968361}
   - {fileID: 1476836979}
