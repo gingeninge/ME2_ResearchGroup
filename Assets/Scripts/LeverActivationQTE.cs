@@ -11,7 +11,7 @@ public class LeverActivationQTE : MonoBehaviour
 
     public void OnLeverPulled()
     {
-        // Get currently socketed sword
+        
         IXRSelectInteractable interactable = swordSocket.GetOldestInteractableSelected();
 
         if (interactable != null)
