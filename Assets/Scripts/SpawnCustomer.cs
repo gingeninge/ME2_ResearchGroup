@@ -9,6 +9,15 @@ public class SpawnCustomer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject tags = GameObject.FindGameObjectWithTag("Customer");
+        if(tags is not null) 
+        {
+            InScene = false;
+        }
+        else 
+        {
+            InScene = true;
+        }
         if (InScene) 
         {
             SpawnCustomers();
