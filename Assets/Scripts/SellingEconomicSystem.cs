@@ -9,7 +9,7 @@ public class SellingEconomicSystem : MonoBehaviour
     public TMP_Text customerRequest;
     public TMP_Text moneyText;
 
-    private readonly string[] materials = { "Iron", "Steel", "Gold" };
+    private readonly string[] materials = { "IronMat", "SteelMat", "CopperMat" };
     private string requestedMat;
     private int reward;
     private int playerMoney = 100;
