@@ -5,7 +5,7 @@ using UnityEngine;
 public class SellingEconomicSystem : MonoBehaviour
 {
     public TMP_Dropdown material;
-    public Button sellButton;
+  
     public TMP_Text customerRequest;
     public TMP_Text moneyText;
 
@@ -14,12 +14,13 @@ public class SellingEconomicSystem : MonoBehaviour
     private int reward;
     private int playerMoney = 100;
     public int penaltyAmount;
+    public VillagerwayPoints otherVillager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         RequestDropDown();
-        sellButton.onClick.AddListener(SellSword);
+    
         GenerateRequest();
         UpdateMoney();
     }
@@ -39,7 +40,7 @@ public class SellingEconomicSystem : MonoBehaviour
         customerRequest.text = $"Customer wants: <b>{requestedMat}</b> sword\nReward: <b>${reward}</b>";
     }
 
-    void SellSword()
+     public void SellSword()
     {
         string madeMaterial = material.options[material.value].text;
 
@@ -57,6 +58,7 @@ public class SellingEconomicSystem : MonoBehaviour
 
         GenerateRequest();
         UpdateMoney();
+        otherVillager.GetComponent<VillagerwayPoints>().taskCompleted = true;
     }
 
     void UpdateMoney()

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VillagerwayPoints : MonoBehaviour
@@ -7,6 +8,9 @@ public class VillagerwayPoints : MonoBehaviour
 
     public float Movementspeed = 1;
     float WayPointRadius = 1;
+    public bool taskCompleted = false;
+    bool canMove = true;
+    bool waitingForTask = false;
 
     void Start()
     {
@@ -16,6 +20,16 @@ public class VillagerwayPoints : MonoBehaviour
 
     void Update()
     {
+        if (!canMove)
+        {
+            if (waitingForTask && taskCompleted)
+            {
+                canMove = true;
+                waitingForTask = false;
+                taskCompleted = false;
+            }
+            else return;
+        }
         if (wayPoints == null || wayPoints.Length == 0) return;
 
         GameObject target = wayPoints[currentWaypoint];
@@ -31,5 +45,14 @@ public class VillagerwayPoints : MonoBehaviour
         }
 
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * Movementspeed);
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("StopZone") && !waitingForTask)
+        {
+            canMove = false;
+            waitingForTask = true;
+           
+        }
     }
 }
