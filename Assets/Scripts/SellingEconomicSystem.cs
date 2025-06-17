@@ -19,17 +19,13 @@ public class SellingEconomicSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        RequestDropDown();
+      
     
         GenerateRequest();
         UpdateMoney();
     }
 
-    void RequestDropDown()
-    {
-        material.ClearOptions();
-        material.AddOptions(new System.Collections.Generic.List<string>(materials));
-    }
+   
 
     void GenerateRequest()
     {
