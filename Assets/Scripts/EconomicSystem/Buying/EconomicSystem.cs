@@ -37,10 +37,13 @@ public class EconomicSystem : MonoBehaviour
             Instantiate(shopItem.prefab, shopItem.spawnPoint.position,Quaternion.identity);
           
         }
-        else
-        {
-          
-        }
+
+        UpdateCurrency();
+    }
+
+    public void AddMoney(int amount)
+    {
+        playerMoney += amount;
         UpdateCurrency();
     }
 
