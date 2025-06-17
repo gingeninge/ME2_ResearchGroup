@@ -686,6 +686,7 @@ GameObject:
   - component: {fileID: 4849197256869890409}
   - component: {fileID: 5206978189853279404}
   - component: {fileID: 3461098313000616055}
+  - component: {fileID: 6871773972782767096}
   m_Layer: 0
   m_Name: PT_Female_Peasant_01_a
   m_TagString: Customer
@@ -769,10 +770,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f396f35eaa2a7ff4bbc2a5f75df11e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoints: []
   Movementspeed: 1
-  isAtCounter: 1
-  hasSword: 0
+  taskCompleted: 0
+--- !u!54 &6871773972782767096
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2224834628610083241}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2326745957531915527
 GameObject:
   m_ObjectHideFlags: 0
