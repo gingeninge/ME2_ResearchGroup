@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 233be0623027421449b81f7423abaf79
-ShaderImporter:
+guid: bea566fa55d24bb428b6e2ed64f07366
+DefaultImporter:
   externalObjects: {}
-  defaultTextures: []
-  nonModifiableTextures: []
-  preprocessorOverride: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -13,5 +10,5 @@ AssetOrigin:
   productId: 122225
   packageName: Lowpoly Medieval Peasants - Free - MEDIEVAL FANTASY SERIES
   packageVersion: 4.2.1
-  assetPath: Assets/Polytope Studio/Lowpoly_Environments/Sources/Shaders/PT_Vegetation_Plants_Shader.shader
+  assetPath: Assets/Polytope Studio/Lowpoly_Characters/URP/PT_Peasants_Free_URP_14.unitypackage
   uploadId: 721311
