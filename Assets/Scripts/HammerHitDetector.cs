@@ -10,6 +10,7 @@ public class HammerHitDetector : MonoBehaviour
             if (sword != null)
             {
                 sword.OnHammerHit();
+            
             }
         }
     
