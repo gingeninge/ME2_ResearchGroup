@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 using UnityEngine.UI;
+using System.Globalization;
 
 
 public class SellingEconomicSystem : MonoBehaviour
@@ -28,7 +29,8 @@ public class SellingEconomicSystem : MonoBehaviour
     public bool isIron;
     public bool isCopper;
     private VillagerwayPoints activeVillager;
-   
+    private GameObject sword;
+
     void Start()
     {
         UpdateMoney();
@@ -56,7 +58,7 @@ public class SellingEconomicSystem : MonoBehaviour
         if (selected == null) return;
 
 
-        GameObject sword = selected.transform.gameObject;
+        sword = selected.transform.gameObject;
 
         string Mat = sword.tag;
         switch (Mat)
@@ -82,25 +84,31 @@ public class SellingEconomicSystem : MonoBehaviour
         if (requestedMat == "Iron" && isIron)
         {
             Debug.Log("thanks");
+            Destroy(sword);
         }
         else {
-            Debug.Log("wrong"); 
+            Debug.Log("wrong");
+            Destroy(sword);
         }
         if (requestedMat == "Steel" && isSteel)
         {
             Debug.Log("thanks");
+            Destroy(sword);
         }
         else
         {
             Debug.Log("wrong");
+            Destroy(sword);
         }
         if (requestedMat == "Copper" && isCopper)
         {
             Debug.Log("thanks");
+            Destroy(sword);
         }
         else
         {
             Debug.Log("wrong");
+            Destroy(sword);
         }
         GenerateRequest(); 
         UpdateMoney();
