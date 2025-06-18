@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cef3c19c9eeed664095cd74ff800907b, type: 3}
       propertyPath: m_TagString
-      value: Blade
+      value: CopperSword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -523,7 +523,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cef3c19c9eeed664095cd74ff800907b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5183285268543911479}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cef3c19c9eeed664095cd74ff800907b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8498544740213361054}
   m_SourcePrefab: {fileID: 100100000, guid: cef3c19c9eeed664095cd74ff800907b, type: 3}
+--- !u!23 &3449769105237005704 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: cef3c19c9eeed664095cd74ff800907b, type: 3}
+  m_PrefabInstance: {fileID: 4044688869682465036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3810316628112667741 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cef3c19c9eeed664095cd74ff800907b, type: 3}
@@ -715,6 +723,24 @@ MonoBehaviour:
   heatedTexture: {fileID: 2800000, guid: d365c466b8ae1c64f97d4c284a94f1f8, type: 3}
   cooledMaterial: {fileID: 2100000, guid: 1c073d7359a4c654da4d1c683c87a36a, type: 2}
   coolingDuration: 5
+--- !u!114 &-8498544740213361054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810316628112667741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531f8593c94666244a5279c610e8e07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 3449769105237005704}
+  defaultMaterial: {fileID: 2100000, guid: 1c073d7359a4c654da4d1c683c87a36a, type: 2}
+  highlightMaterial: {fileID: -876546973899608171, guid: f2e1622811ee82344baea4e732478d30, type: 3}
+  audioSource: {fileID: 0}
+  successClip: {fileID: 0}
+  failClip: {fileID: 0}
 --- !u!4 &4587802863171481319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cef3c19c9eeed664095cd74ff800907b, type: 3}

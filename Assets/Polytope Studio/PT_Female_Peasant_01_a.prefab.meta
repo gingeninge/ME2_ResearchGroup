@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 03fb6f49d936d5e429b639fccb1f29a6
+guid: 1906c8b8d7539724b9f8bed9421c270e
 PrefabImporter:
   externalObjects: {}
   userData: 
@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 122225
   packageName: Lowpoly Medieval Peasants - Free - MEDIEVAL FANTASY SERIES
   packageVersion: 4.2.1
-  assetPath: Assets/Polytope Studio/Lowpoly_Characters/Prefabs/Modular_NPC/Peasants_Citizens/Sets/PT_Boy_Peasant_01.prefab
+  assetPath: Assets/Polytope Studio/PT_Female_Peasant_01_a.prefab
   uploadId: 721311

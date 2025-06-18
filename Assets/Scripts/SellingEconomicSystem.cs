@@ -32,6 +32,7 @@ public class SellingEconomicSystem : MonoBehaviour
     void Start()
     {
         UpdateMoney();
+        GenerateRequest();
     }
 
 
@@ -39,12 +40,16 @@ public class SellingEconomicSystem : MonoBehaviour
     {
         CheckSword();
     }
-
     void GenerateRequest()
-    {
+        {
+            int randomIndex = Random.Range(0, materials.Length);
+            requestedMat = materials[randomIndex];
+            reward = Random.Range(30, 200);
 
-        customerRequest.text = $"Customer wants: <b>{requestedMat}</b> sword\nReward: <b>${reward}</b>";
-    }
+            customerRequest.text = $"Customer wants: <b>{requestedMat}</b> sword\nReward: <b>${reward}</b>";
+        }
+  
+    
     public void CheckSword()
     {
         IXRSelectInteractable selected = Socket.GetOldestInteractableSelected();
