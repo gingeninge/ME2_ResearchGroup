@@ -15,6 +15,7 @@ public class OreMelt : MonoBehaviour
     public GameObject IronSword;
     public GameObject SteelSword;
     public GameObject CopperSword;
+    public GameObject Hilt;
     public Transform spawn;
     void Start()
     {
@@ -62,11 +63,17 @@ public class OreMelt : MonoBehaviour
             isSword=false;
         }
 
-        if (isIron && isSword) 
+        if (isIron && isSword)
         {
             Instantiate(IronSword, spawn.position, spawn.rotation);
             isIron = false;
-            isSword=false;
+            isSword = false;
+        }
+        else if (isIron && isHilt) 
+        {
+            Instantiate(Hilt, spawn.position, spawn.rotation);
+            isIron = false;
+            isHilt = false;
         }
     }
     private void OnTriggerEnter(Collider other)
