@@ -56,4 +56,9 @@ public class EconomicSystem : MonoBehaviour
             Debug.Log($"Trigger entered by: {other.name}");
         }
     }
+    public void AddMoney(int amount)
+    {
+        playerMoney += amount;
+        Debug.Log($"Money updated: ${playerMoney}");
+    }
 }

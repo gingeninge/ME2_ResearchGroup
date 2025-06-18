@@ -1658,7 +1658,6 @@ GameObject:
   - component: {fileID: 7140232423310218238}
   - component: {fileID: -3944729891043763847}
   - component: {fileID: -4792104281457885630}
-  - component: {fileID: -9132840204582100497}
   - component: {fileID: 67662503802470747}
   m_Layer: 0
   m_Name: PT_Boy_Peasant_01
@@ -1745,23 +1744,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movementspeed: 1
   taskCompleted: 0
---- !u!114 &-9132840204582100497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4520716785383396158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b825c0af9c340c84bb35c42b7222011a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 0}
-  customerRequest: {fileID: 0}
-  moneyText: {fileID: 0}
-  penaltyAmount: 0
-  otherVillager: {fileID: 0}
 --- !u!54 &67662503802470747
 Rigidbody:
   m_ObjectHideFlags: 0

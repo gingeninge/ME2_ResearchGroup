@@ -11,12 +11,13 @@ TagManager:
   - SteelOre
   - IronOre
   - SwordMold
-  - DaggerMold
-  - AxeMold
-  - ShieldMold
   - SwordHiltMold
   - Customer
   - StopZone
+  - IronSword
+  - SteelSword
+  - CopperSword
+  - KillZone
   layers:
   - Default
   - TransparentFX

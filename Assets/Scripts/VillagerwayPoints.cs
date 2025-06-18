@@ -50,9 +50,18 @@ public class VillagerwayPoints : MonoBehaviour
     {
         if (other.CompareTag("StopZone") && !waitingForTask)
         {
+            SellingEconomicSystem sellSystem = FindAnyObjectByType<SellingEconomicSystem>();
+            if (sellSystem != null)
+            {
+                sellSystem.RegisterActiveVillager(this); // Tell the sell system “I’m the one”
+            }
+
             canMove = false;
             waitingForTask = true;
-           
+        }
+        if (other.CompareTag("KillZone")) 
+        {
+            Destroy(this.gameObject);
         }
     }
 }
