@@ -3402,7 +3402,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 408605601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef4bd416a4635b46a28e1822a76cabe, type: 3}
+  m_Script: {fileID: 11500000, guid: bf2cc0495b5f13c49a50001190d38c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &422655520
@@ -9044,7 +9044,7 @@ MonoBehaviour:
   onLeverPulled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1291784712}
         m_TargetAssemblyTypeName: SellingEconomicSystem, Assembly-CSharp
         m_MethodName: SellSword
         m_Mode: 1
@@ -12769,7 +12769,6 @@ MonoBehaviour:
   customerRequest: {fileID: 1772279610}
   moneyText: {fileID: 2135559291}
   penaltyAmount: 0
-  otherVillager: {fileID: 0}
   isSteel: 0
   isIron: 0
   isCopper: 0
@@ -13718,22 +13717,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9078037237241554317, guid: a0164d9c476080e449c72cf58e7709ab, type: 3}
   m_PrefabInstance: {fileID: 2072088250}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1429300004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429300002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 261ccbb1fc2871a4fa53a804bdca3f54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordSocket: {fileID: 1937831245}
-  qteDuration: 15
-  minInterval: 1
-  maxInterval: 2
 --- !u!65 &1429300005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13771,7 +13754,7 @@ MonoBehaviour:
   onLeverPulled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1429300004}
+      - m_Target: {fileID: 1429300012}
         m_TargetAssemblyTypeName: LeverActivationQTE, Assembly-CSharp
         m_MethodName: OnLeverPulled
         m_Mode: 1
@@ -13974,6 +13957,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1429300012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429300002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095354009895c604e842e9a0a1721ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordSocket: {fileID: 1937831245}
+  qteDuration: 15
+  minInterval: 1
+  maxInterval: 2
 --- !u!1 &1429491387
 GameObject:
   m_ObjectHideFlags: 0
@@ -15940,7 +15939,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532742054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015ae0571444e3343ba446cbeedbc8ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e11f4cf4c99c404aba2ebe3de421570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
@@ -16496,7 +16495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1591500610}
-  - component: {fileID: 1591500609}
+  - component: {fileID: 1591500611}
   m_Layer: 0
   m_Name: Spawnercustomer
   m_TagString: Untagged
@@ -16504,24 +16503,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1591500609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591500608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 280b7018bd13322409638dc04f20068b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Customers:
-  - {fileID: 4520716785383396158, guid: 03fb6f49d936d5e429b639fccb1f29a6, type: 3}
-  - {fileID: 2224834628610083241, guid: 1906c8b8d7539724b9f8bed9421c270e, type: 3}
-  - {fileID: 5949706081513176824, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
-  spawnPos: {fileID: 1591500610}
-  InScene: 0
 --- !u!4 &1591500610
 Transform:
   m_ObjectHideFlags: 0
@@ -16538,6 +16519,24 @@ Transform:
   - {fileID: 1077829802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1591500611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591500608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964f9840baed34e46977d3041bdfdcb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Customers:
+  - {fileID: 4520716785383396158, guid: 03fb6f49d936d5e429b639fccb1f29a6, type: 3}
+  - {fileID: 2224834628610083241, guid: 1906c8b8d7539724b9f8bed9421c270e, type: 3}
+  - {fileID: 5949706081513176824, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+  spawnPos: {fileID: 1591500610}
+  InScene: 0
 --- !u!1001 &1594029118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20325,7 +20324,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5769024, y: 0.534639, z: 1.2658081}
   m_Center: {x: 0.0000011324883, y: 0.2673195, z: 0.1567396}
---- !u!114 &1937831250
+--- !u!114 &1937831253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20334,7 +20333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1937831243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4cf9a22c11569f478c50908856cce25, type: 3}
+  m_Script: {fileID: 11500000, guid: 3045bd420a5f4264fa4ac7679249f90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   swordSocket: {fileID: 1937831245}
@@ -20527,7 +20526,7 @@ PrefabInstance:
       addedObject: {fileID: 1937831249}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 280a353c403060c44bf9605ac066d9fb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1937831250}
+      addedObject: {fileID: 1937831253}
   m_SourcePrefab: {fileID: 100100000, guid: 280a353c403060c44bf9605ac066d9fb, type: 3}
 --- !u!1 &1964397104 stripped
 GameObject:
@@ -21420,7 +21419,7 @@ PrefabInstance:
       addedObject: {fileID: 1429300005}
     - targetCorrespondingSourceObject: {fileID: 8547448563377378517, guid: a0164d9c476080e449c72cf58e7709ab, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1429300004}
+      addedObject: {fileID: 1429300012}
   m_SourcePrefab: {fileID: 100100000, guid: a0164d9c476080e449c72cf58e7709ab, type: 3}
 --- !u!1 &2073663199 stripped
 GameObject:
