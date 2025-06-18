@@ -53,7 +53,7 @@ public class VillagerwayPoints : MonoBehaviour
             SellingEconomicSystem sellSystem = FindAnyObjectByType<SellingEconomicSystem>();
             if (sellSystem != null)
             {
-                sellSystem.RegisterActiveVillager(this); // Tell the sell system “I’m the one”
+                sellSystem.RegisterActiveVillager(this); 
             }
 
             canMove = false;
