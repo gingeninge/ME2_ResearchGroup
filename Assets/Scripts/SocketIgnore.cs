@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -26,7 +26,7 @@ public class AutoIgnoreSocketCollision : MonoBehaviour
             return;
         }
 
-        // Ignore collisions with parent
+        // Ignore collisions between parent and snapped object
         Collider[] parentColliders = parentObject.GetComponentsInChildren<Collider>();
         Collider[] snappedColliders = snappedObject.GetComponentsInChildren<Collider>();
 
@@ -45,7 +45,7 @@ public class AutoIgnoreSocketCollision : MonoBehaviour
             grab.enabled = false;
         }
 
-        // Reset Rigidbody
+        // Stop physics movement and make it static
         Rigidbody rb = snappedObject.GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -54,16 +54,29 @@ public class AutoIgnoreSocketCollision : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        // Snap and parent safely
+        // Parent and align
         Transform attachTransform = socket.attachTransform;
 
-        // Set position/rotation before parenting
-        snappedObject.transform.SetPositionAndRotation(
-            attachTransform.position,
-            attachTransform.rotation
-        );
+        snappedObject.transform.SetParent(attachTransform, false);
+        snappedObject.transform.localPosition = Vector3.zero;
+        snappedObject.transform.localRotation = Quaternion.identity;
+        snappedObject.transform.localScale = Vector3.one;
 
-        // Then parent to the socket to keep it locked in without warping
-        snappedObject.transform.SetParent(socket.attachTransform, true);
+        // Optional: Fix attach point in case you want to re-enable grabbing later
+        if (grab != null)
+        {
+            if (grab.attachTransform == null)
+            {
+                GameObject newAttach = new GameObject("AutoAttachTransform");
+                newAttach.transform.SetPositionAndRotation(attachTransform.position, attachTransform.rotation);
+                newAttach.transform.SetParent(snappedObject.transform);
+                grab.attachTransform = newAttach.transform;
+            }
+            else
+            {
+                grab.attachTransform.position = attachTransform.position;
+                grab.attachTransform.rotation = attachTransform.rotation;
+            }
+        }
     }
 }
