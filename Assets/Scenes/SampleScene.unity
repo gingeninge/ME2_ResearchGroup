@@ -9044,7 +9044,7 @@ MonoBehaviour:
   onLeverPulled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1291784712}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SellingEconomicSystem, Assembly-CSharp
         m_MethodName: SellSword
         m_Mode: 1
@@ -12660,8 +12660,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1291784710}
   - component: {fileID: 1291784709}
-  - component: {fileID: 1291784712}
   - component: {fileID: 1291784711}
+  - component: {fileID: 1291784712}
   m_Layer: 0
   m_Name: BuyZone
   m_TagString: StopZone
