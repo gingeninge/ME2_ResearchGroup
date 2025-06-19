@@ -36,6 +36,7 @@ public class SellingEconomicSystem : MonoBehaviour
     private void Update()
     {
         CheckSword();
+        UpdateMoney();
     }
     void GenerateRequest()
     {
