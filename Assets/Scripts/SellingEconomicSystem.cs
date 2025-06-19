@@ -11,24 +11,25 @@ public class SellingEconomicSystem : MonoBehaviour
 
     public XRSocketInteractor Socket;
     public TMP_Text customerRequest;
-    public TMP_Text moneyText;
 
 
+    [SerializeField] private EconomicSystem ecoSystem;
     private readonly string[] materials = { "Iron", "Steel", "Copper" };
     private string requestedMat;
     private int reward;
-    private int playerMoney;
+
     public int penaltyAmount = 50;
-    private GameObject sword;
+
 
     public bool isSteel;
     public bool isIron;
     public bool isCopper;
     private VillagerwayPoints activeVillager;
+    private GameObject sword;
 
     void Start()
     {
-        UpdateMoney();
+
         GenerateRequest();
     }
 
@@ -36,7 +37,6 @@ public class SellingEconomicSystem : MonoBehaviour
     private void Update()
     {
         CheckSword();
-       
     }
     void GenerateRequest()
     {
@@ -54,7 +54,7 @@ public class SellingEconomicSystem : MonoBehaviour
         if (selected == null) return;
 
 
-       sword = selected.transform.gameObject;
+        sword = selected.transform.gameObject;
 
         string Mat = sword.tag;
         switch (Mat)
@@ -80,41 +80,41 @@ public class SellingEconomicSystem : MonoBehaviour
         if (requestedMat == "Iron" && isIron)
         {
             Debug.Log("thanks");
-            playerMoney += reward;
+            ecoSystem.AddMoney(reward);
             Destroy(sword);
         }
         else
         {
-            Debug.Log("wrong");
-            playerMoney -= penaltyAmount;
+            Debug.Log("wrong sword!");
+            ecoSystem.AddMoney(-penaltyAmount);
             Destroy(sword);
         }
         if (requestedMat == "Steel" && isSteel)
         {
             Debug.Log("thanks");
-            playerMoney += reward;
+            ecoSystem.AddMoney(reward);
             Destroy(sword);
         }
         else
         {
             Debug.Log("wrong");
-            playerMoney -= penaltyAmount;
+            ecoSystem.AddMoney(-penaltyAmount);
             Destroy(sword);
         }
         if (requestedMat == "Copper" && isCopper)
         {
             Debug.Log("thanks");
-            playerMoney += reward;
+            ecoSystem.AddMoney(reward);
             Destroy(sword);
         }
         else
         {
             Debug.Log("wrong");
-            playerMoney -= penaltyAmount;
+            ecoSystem.AddMoney(-penaltyAmount);
             Destroy(sword);
         }
         GenerateRequest();
-        UpdateMoney();
+
         if (activeVillager != null)
         {
             activeVillager.taskCompleted = true;
@@ -123,10 +123,7 @@ public class SellingEconomicSystem : MonoBehaviour
         }
 
     }
-    void UpdateMoney()
-    {
-        moneyText.text = $"Money : <b>${playerMoney}<b>";
-    }
+
     public void RegisterActiveVillager(VillagerwayPoints villager)
     {
         activeVillager = villager;
