@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Forgablescript : MonoBehaviour
 {
     public MeshRenderer meshRenderer;
+    public XRGrabInteractable grabInteractable;
     public Material defaultMaterial;
     public Material highlightMaterial;
     public AudioSource audioSource;
@@ -12,8 +15,18 @@ public class Forgablescript : MonoBehaviour
 
     private bool isHittable = false;
 
+    [Header("Interaction Layers")]
+    public InteractionLayerMask grabbableLayer;
+    public InteractionLayerMask lockedLayer;
+
     public void StartQTE(float totalDuration, float minInterval, float maxInterval)
     {
+        // Lock grabbing
+        if (grabInteractable != null)
+        {
+            grabInteractable.interactionLayers = lockedLayer;
+        }
+
         StartCoroutine(QTECoroutine(totalDuration, minInterval, maxInterval));
     }
 
@@ -41,24 +54,25 @@ public class Forgablescript : MonoBehaviour
             meshRenderer.material = defaultMaterial;
         }
 
-        Debug.Log($"{gameObject.name}: QTE finished");
+       
+        if (grabInteractable != null)
+        {
+            grabInteractable.interactionLayers = grabbableLayer;
+        }
+
+        Debug.Log($"{gameObject.name}: QTE finished and unlocked.");
     }
 
-    public bool IsHittable()
-    {
-        return isHittable;
-    }
+    public bool IsHittable() => isHittable;
 
     public void OnHammerHit()
     {
         if (IsHittable())
         {
-            Debug.Log("Success hit on sword!");
             audioSource.PlayOneShot(successClip);
         }
         else
         {
-            Debug.Log("Failed hit on sword.");
             audioSource.PlayOneShot(failClip);
         }
     }

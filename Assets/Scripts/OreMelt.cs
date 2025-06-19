@@ -43,7 +43,9 @@ public class OreMelt : MonoBehaviour
                 isHilt = true;
                 break;
             default:
-                Debug.LogWarning("Unknown mold tag: " + tag);
+                
+                isSword = false ;
+                isHilt=false ;
                 return;
         }
     }

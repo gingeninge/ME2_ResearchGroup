@@ -21,8 +21,8 @@ MonoBehaviour:
   - MoldConnector
   - MoldSwordLid
   - MoldHiltLid
-  - 
-  - 
+  - IsGrabbable
+  - Locked
   - 
   - 
   - 

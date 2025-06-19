@@ -5727,7 +5727,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1939050037}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 32
+    m_Bits: 288
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -10448,6 +10448,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 4a6e1b401bec6f541bdfa7421c000ec6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1113234384}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 4a6e1b401bec6f541bdfa7421c000ec6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1113234388}
   m_SourcePrefab: {fileID: 100100000, guid: 4a6e1b401bec6f541bdfa7421c000ec6, type: 3}
 --- !u!1 &1113234378 stripped
 GameObject:
@@ -10823,6 +10826,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1113234388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113234378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2cc0495b5f13c49a50001190d38c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1113487000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11829,11 +11844,11 @@ PrefabInstance:
       objectReference: {fileID: 1187091596}
     - target: {fileID: -8498544740213361054, guid: 7d4fd6f2ee46aac478ee9fc4f46beca5, type: 3}
       propertyPath: lockedLayer.m_Bits
-      value: 16
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: -8498544740213361054, guid: 7d4fd6f2ee46aac478ee9fc4f46beca5, type: 3}
       propertyPath: grabbableLayer.m_Bits
-      value: 16
+      value: 272
       objectReference: {fileID: 0}
     - target: {fileID: 1142080092097060122, guid: 7d4fd6f2ee46aac478ee9fc4f46beca5, type: 3}
       propertyPath: m_Interpolate
@@ -13004,7 +13019,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1939050037}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 32
+    m_Bits: 288
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -13233,11 +13248,11 @@ PrefabInstance:
       objectReference: {fileID: 1229354708}
     - target: {fileID: -1654840754882728833, guid: fca31a4a597271946ae439f844e8d119, type: 3}
       propertyPath: lockedLayer.m_Bits
-      value: 0
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: -1654840754882728833, guid: fca31a4a597271946ae439f844e8d119, type: 3}
       propertyPath: grabbableLayer.m_Bits
-      value: 16
+      value: 272
       objectReference: {fileID: 0}
     - target: {fileID: 1142080092097060122, guid: fca31a4a597271946ae439f844e8d119, type: 3}
       propertyPath: m_Interpolate
@@ -19258,11 +19273,11 @@ PrefabInstance:
       objectReference: {fileID: 1613636827}
     - target: {fileID: -4183930606950572898, guid: 219b327700a10e44abe706d60d5d8579, type: 3}
       propertyPath: lockedLayer.m_Bits
-      value: 16
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: -4183930606950572898, guid: 219b327700a10e44abe706d60d5d8579, type: 3}
       propertyPath: grabbableLayer.m_Bits
-      value: 16
+      value: 272
       objectReference: {fileID: 0}
     - target: {fileID: 1142080092097060122, guid: 219b327700a10e44abe706d60d5d8579, type: 3}
       propertyPath: m_Interpolate
@@ -21208,8 +21223,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
