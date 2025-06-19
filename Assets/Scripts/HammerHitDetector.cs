@@ -1,17 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HammerHitDetector : MonoBehaviour
 {
-   
-    
-        private void OnCollisionEnter(Collision collision)
+    public GameObject sparkEffectPrefab; 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Forgablescript sword = collision.gameObject.GetComponent<Forgablescript>();
+        if (sword != null)
         {
-            Forgablescript sword = collision.gameObject.GetComponent<Forgablescript>();
-            if (sword != null)
-            {
-                sword.OnHammerHit();
-            
-            }
+            sword.OnHammerHit();
+
+          
+            ContactPoint contact = collision.contacts[0];
+            Vector3 hitPoint = contact.point;
+            Quaternion hitRotation = Quaternion.LookRotation(contact.normal);
+
+            GameObject spark = Instantiate(sparkEffectPrefab, hitPoint, hitRotation);
+            Destroy(spark, 1.5f); 
         }
-    
+    }
 }

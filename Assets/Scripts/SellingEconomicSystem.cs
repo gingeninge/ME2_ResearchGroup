@@ -42,7 +42,7 @@ public class SellingEconomicSystem : MonoBehaviour
     {
         int randomIndex = Random.Range(0, materials.Length);
         requestedMat = materials[randomIndex];
-        reward = Random.Range(30, 200);
+        reward = Random.Range(30, 70);
 
         customerRequest.text = $"Customer wants: <b>{requestedMat}</b> sword\nReward: <b>${reward}</b>";
     }
