@@ -17,7 +17,7 @@ public class SellingEconomicSystem : MonoBehaviour
     private readonly string[] materials = { "Iron", "Steel", "Copper" };
     private string requestedMat;
     private int reward;
-    private int playerMoney = 100;
+    private int playerMoney;
     public int penaltyAmount = 50;
     private GameObject sword;
 
@@ -36,7 +36,7 @@ public class SellingEconomicSystem : MonoBehaviour
     private void Update()
     {
         CheckSword();
-        UpdateMoney();
+       
     }
     void GenerateRequest()
     {

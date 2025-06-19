@@ -5,6 +5,7 @@ public class LeverAction : MonoBehaviour
 {
     public HingeJoint hingeJoint;
     public UnityEvent onLeverPulled;
+    public AudioSource sound;
 
     [Header("Lever Settings")]
     public float pullAngleThreshold = -60f;    
@@ -41,6 +42,7 @@ public class LeverAction : MonoBehaviour
             onLeverPulled.Invoke();
             wasPulledUp = false;
             hingeJoint.useMotor = false;
+            sound.Play();
         }
     }
 }
