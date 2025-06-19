@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 6428605613420888292}
   - component: {fileID: 3426968546624940485}
   - component: {fileID: 1200749940761233060}
-  - component: {fileID: 4913497103099329751}
   m_Layer: 0
   m_Name: Pommel
   m_TagString: Untagged
@@ -164,19 +163,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0003666, y: 0.019612018, z: 0.00013158}
   m_Center: {x: 0, y: 0.002922301, z: -2.0764197e-17}
---- !u!114 &4913497103099329751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3624013165716920295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e2129c2e1be6443854b96cb7fae906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentObject: {fileID: 3810316628112667741}
 --- !u!1 &4940106044230989398
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +205,6 @@ GameObject:
   - component: {fileID: 6990768010415128187}
   - component: {fileID: 4344924776105075847}
   - component: {fileID: 9213941023800984045}
-  - component: {fileID: 8623335670103265588}
   m_Layer: 0
   m_Name: Grip
   m_TagString: Untagged
@@ -310,19 +295,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0003666, y: 0.01961202, z: 0.00013158}
   m_Center: {x: 0, y: 0.002922301, z: -2.0764197e-17}
---- !u!114 &8623335670103265588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8437157006449384301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e2129c2e1be6443854b96cb7fae906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentObject: {fileID: 3810316628112667741}
 --- !u!1 &8663058513997398323
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +306,6 @@ GameObject:
   - component: {fileID: 4284549442425822858}
   - component: {fileID: 4613536234420643688}
   - component: {fileID: 7949296353164187236}
-  - component: {fileID: 8416335113894006695}
   m_Layer: 0
   m_Name: Hilt
   m_TagString: Untagged
@@ -425,19 +396,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0003666, y: 0.01961202, z: 0.00013158}
   m_Center: {x: 0, y: 0.002922301, z: -2.0764197e-17}
---- !u!114 &8416335113894006695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663058513997398323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e2129c2e1be6443854b96cb7fae906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentObject: {fileID: 3810316628112667741}
 --- !u!1001 &4044688869682465036
 PrefabInstance:
   m_ObjectHideFlags: 0
